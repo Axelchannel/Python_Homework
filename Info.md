@@ -165,7 +165,180 @@ def function(x):
       return
 
 
+* # Файлы
 
+* Хранение данных
+* Передача данных в клиент-серверных проектах
+* Хранение конфигов 
 
+Как рабоать с файлами : 
 
+1) Связать файловую переменную с файлом,определив модификатор работы
+2) а - открытие для добавления данных
+3) r - открытие для чтения данных
+4) w - открытие для записи данных
+5) w+, r+ 
 
+# Example
+
+colors = [ 'red', 'green' , 'blue']
+
+data = open('file.txt,'a')
+* Создаём текстовую переменную data и связываем её с текстовыми переменными  
+
+data.writelines(colours) - разделитей не будет
+* Функционал для записи данных  
+
+Либо:
+
+data=write('\nLINE 2\n')
+
+data.write('LINE 3\n')
+#
+data.close()
+
+## Пример другой записи
+with open('file.txt, 'w') as data:
+     
+       data.write('line 1\n')
+
+       data.write('line 2 \n')
+#
+
+## Чтение данных из файла
+
+path= 'file.txt' - путь к папке
+
+data=open(path, 'r') - открываем папку в режиме чтения
+
+for line in data:
+
+       print(line)
+data.close()
+#
+
+## Функции и модули
+
+Имеем файл python.py в котором написана функция.
+
+Для того, чтобы обратиться к этой функции в другой файле необходимо:
+
+import hello as h
+
+print(h.имя функции(x))
+#
+
+def new_string(symbol,count):
+
+     return symbol*count
+
+print(new_string('!', 5)) !!!!!
+
+print(new_string('!')) TypeError missing 1 required
+
+или
+
+ef new_string(symbol,count = 3):
+
+     return symbol*count
+
+print(new_string('!', 5)) !!!!!
+
+print(new_string('!')) !!!
+
+print(new_string(4)) 12
+
+#
+## Возможность передачи неограниченного кол-ва переменных
+
+def concatentatio(*params):
+      
+        res: str = ""
+        for item in params:
+             res += item
+        return res
+print(concatentatio('a','s','d','w')) asdw
+
+print(concatentatio('a','1','d','2')) a1d2
+
+print(concatentatio(1,2,3,4)) error
+#
+## Рекурсия
+
+      def fib(n):
+          if n in [1,2]:
+               return 1
+          else 
+               return fib(n-1) + fib(n-2)
+
+        list = []
+        for e in range (1,10):
+               list.append(fib(e))
+        print(list) 1 1 2 3 5 8 13 21 34
+##
+# Кортеж
+Незменяемый список
+
+        a = (3,4)
+        print(a)  (3,4)
+        print(a[0]) 3 
+        print(a[-1]) 4
+
+        
+        a = (3,4,5)
+        for item in a:
+             print(item)  3 4 5  
+        
+Распаковка кортежа
+
+        t = tuple(['red','green','blue'])
+        red,green,blue = t
+        print('r:{},'g:{},'b:{}.format(red,green,blue) r:red g:green b:blue
+#
+## Словари 
+Непорядоченные коллекции призвольных объектов с доступом по ключу 
+
+        dictionary = {} - пустой словарь
+        dictionary = \  - указание пар
+            {
+                    'up' : p
+                    'left' : l
+            }
+        
+        print(dictionary) 'up': p , 'left': l
+        print(dictionary['left'])  l 
+
+Для того, чтобы пробежаться по ключам:
+
+        for k in dictionary.keys()
+            print(k)  up, left 
+Для того, чтобы увидеть конкретные значения:
+
+        for k in dictionary.values()
+            print(k)  p, l
+#
+## Множества
+
+       colors = {'red','green'}
+       print(colors)
+       colors.add('red')
+       colors.remove('green')
+       colors.discard('red')
+       colors.clear()
+
+       a = {1,2,3,4}
+       b = {2,5,8}
+       c=a.copy() c={1,2,3,4}
+       u.a.union(b) c={1,2,3,4,5,8}
+       i=a.intersection(b) i = P{2}
+       dl = a.difference(b) dl = {}
+##
+# Списки
+
+       list1 = [1,2,3,4,5]
+       print(list1.pop()) - извлеякает последний элемент
+
+       print(list1.pop(2)) - удаление 2-го элемента
+
+       print(list1.instert(2,11,) добавление 11 на 2 позицию 
+       print(list1.append(11)) добавление в конец 
