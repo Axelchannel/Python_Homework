@@ -342,3 +342,250 @@ print(concatentatio(1,2,3,4)) error
 
        print(list1.instert(2,11,) добавление 11 на 2 позицию 
        print(list1.append(11)) добавление в конец 
+
+
+## Ускоренная обработка данных 
+
+ ## Анонимные. Lambda функции
+
+      def T(x):
+         retun x**2
+
+      g = T
+      print(f(1))
+      print(g(1))
+
+В качестве аргумента какой то функции мы можем передать функцию
+
+     def f(x):
+        return x**2
+  
+     print(f(2))
+
+Такая функция может пригодиться всего один раз за всё время работы 
+
+     g = f  # в переменную кладём функцию 
+
+     print(g(2))
+
+# Пример
+
+     def calc(x):
+         return x+10
+
+    print(calc1(10))  # answer = 20
+
+     def calc2(x):
+         return x*10
+
+     print(calc2(10)) # 100
+     
+
+     def math(op,x): # op - операция
+         print(op(x))
+ 
+     math(calc2,10)
+     math(calc1,10)
+
+# 2 Пример
+
+     def sum(x,y):
+         return x+y
+
+     def mylt(x,y)
+         return x*y
+
+     def calc(op,a,b):
+        print(op(a,b))
+        #return op(a,b)     
+ 
+     calc(mylt,4,5) # 20
+
+В качестве аргумента может быть функция 
+
+     def sum(x,y):
+        return x+y
+
+     f = sum
+
+     calc(f,4,5) # 20
+
+
+     #def sum(x,y):
+      #  return x+y
+
+     sum = lambda x, y: x+y 
+
+Две строчки выше совпадают по логике 
+
+     calc(sum,4,5) # 20
+
+Другой вариант:
+      calc(lambda x,y: x+y , 4 ,5)
+
+# List Comprehension 
+Нужен для быстрого создания списков
+
+     [exp for item in iterable]
+     [exp for item iterable ( if conditional) ]
+     [exp <if conditional> for item in iterable (if conditional)]
+
+## Пример
+
+Обычный список 
+     
+     list = []
+     for i in range (1,101):
+         if i%2 == 0 :
+             list.append(i)
+
+Другой вариант
+
+     list = [ i for i in range(1,101) if i % 2 == 0]
+
+Если нужна пара ( делаем кортежи)
+     list = [(i,i)  for i in range(1,101) if i % 2 == 0]
+
+# Пример
+     def f(x):
+         return x**3
+
+     list = [ (i,f(i))  for i in range(1,101) if i % 2 == 0]
+     # (число, куб числа)
+
+# Пример
+В файле хранятся числа, нужно выбрать чётные и составить список пар
+(число,квадрат числа)
+
+Пример : 1 2 3 4 5 8 15 23 38
+
+Получить [(2,4),(8,64),(38,1444)]
+
+     path= 'file.txt'  # путь к папке
+     f=open(path, 'r')  # cвязываем переменную с файлом на диске
+     data = f.read() + ' ' # считывание файла ( считываем всё в строчке и добавляем пробел)
+     f.close() 
+
+     list = []
+
+     while data != ' ': # Пробегаемся по всей строке, которую считали и делаем проверка : пока моя строка не пустая 
+         spac_pos = data.index(' ') # Найти первую позицию пробела 
+         list.append(int(data[:space_[pos]])) # Взяли всё от 1 элемента до позиции пробела, провератил в int и добавить список чисел
+         data = data[space_pos+1:] # обновить нашу строку 
+
+
+       out = [] # новый список
+       for e in list: # пробежка по исходному
+           if not e % 2: # проверка чётности
+             out.append((e,e ** 2)) # кортеж 
+        print(out)
+
+# Упростим код 
+
+        def select(f,col):
+            #формируем новый список и сразу возрващаем
+            return [f(x) for i in col]
+
+        def where(f,col):
+            return[x, for x in col if f(x)]
+        
+        data = '1 2 3 4 5 6 7 8. split()
+
+        res = select(int,data) # результат работы функции f : 1 аргумент - функция,преобразующая строку в число, 2 - набор данных 
+
+        res = where(lambda x: not x % 2, res)
+        res = select(lambda x:(x,x**2),res)
+
+        print(res)
+#
+## Функция map
+
+функция map() применяет указанную функцию к кажому элементу итерируемого объекта и возвращает итератор с новыми объектами
+
+        f(x) -> x + 10
+        map(f,[ 1, 2, 3, 4, 5])
+              [ 11,12,13,14,15]
+
+        li = [x for x in range(1,20)]
+        li = list(map(lambda x:x+10, li))
+        print(li)
+
+# Пример
+ 
+       data = list(map(int,input().split()))
+       print(data)
+
+# Упростим код 
+
+        def select(f,col):
+            #формируем новый список и сразу возрващаем
+            return [f(x) for i in col]
+
+        def where(f,col):
+            return[x, for x in col if f(x)]
+        
+        data = '1 2 3 4 5 6 7 8. split()
+
+        res = map(int,data)  
+
+        res = where(lambda x: not x % 2, res)
+        res = list(map(lambda x:(x,x**2),res))
+
+        print(res)
+
+## Функция filter
+Функция filter() применяет указанную функцию к каждому элементу итерируемого объекта и возвращает итератор с теми объектами, для которых функция вернула True
+
+        f(X) -> x - четное
+        filter(f,[1,2,3,4,5])
+
+                 [ 2  , 4]
+        * нельзя пройтись дважды
+
+
+# Пример
+
+        data [ x for x in range(10)]
+        res = list(filter(lambda x: x% 2 == 0 , data))
+
+#
+        
+        
+        data = '1 2 3 4 5 6 7 8. split()
+
+        res = map(int,data)  
+
+        res = map(lambda x: not x % 2, res)
+        res = list(map(lambda x:(x,x**2),res))
+
+        print(res)
+
+## Функция Zip
+Функция zip() применяется к набору итерируемых объектов и возвращает итератор с кортежами из элеметов входных данных
+
+количество элементов в результате равно минимальному количеству элементов входного набора
+
+zip ([1,2,3], ['o','d','o'], ['в','п','ы'])
+
+[(1,o,в), (2,d,п),(3,o,ы)]
+
+# Пример
+
+     users= ['user1','user2','user3']
+     ids = [4,5,9]
+     data = list(zip(users,ids))
+     print(data)
+
+#
+## Функция enumerate
+Применяется к итерируемому объекту и возвращает новый итератор с кортежами из индекса и элементов входных данных
+
+        enumerate (["Казань", "Смоленск"])
+        [(0,'Казань'), (1,"Смоленск")]
+
+# Пример
+
+     users= ['user1','user2','user3']
+     ids = [4,5,9]
+     data = list(enumerate(users))
+     print(data)
